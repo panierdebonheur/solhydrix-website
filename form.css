@@ -1,0 +1,5 @@
+.hp-field{position:absolute!important;left:-9999px!important;width:1px;height:1px;opacity:0}
+.form-response{margin:14px 0 0;padding:12px 16px;border-radius:8px;background:#eaf4fd;color:#0a4673;font-size:15px;line-height:1.5}
+.form-response.is-error{background:#fdeceb;color:#8a1c14}
+.form-response[hidden]{display:none}
+.assessment-form button[disabled]{opacity:.65;cursor:wait}
