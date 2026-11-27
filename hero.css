@@ -14,11 +14,16 @@
 .js-hero .hero-scene picture{animation:sh-photo-in 1.6s cubic-bezier(.16,.8,.24,1) both;transform-origin:70% 55%}
 .js-hero .hero-premium-copy{transform:translate3d(0,var(--sh-lift,0px),0);opacity:var(--sh-fade,1);will-change:transform,opacity}
 
-/* Clear-coat sheen sweeping across the roof photo */
+/* Clear-coat sheen sweeping across the roof photo: a bright main band plus a thin trailing glint, repeating every 2.4s */
+@keyframes sh-sheen-fast{0%{transform:translateX(-160%) skewX(-20deg)}100%{transform:translateX(420%) skewX(-20deg)}}
 .sh-sheen{position:absolute;inset:0;overflow:hidden;pointer-events:none;mix-blend-mode:screen}
-.sh-sheen:before{content:'';position:absolute;top:-10%;bottom:-10%;left:0;width:38%;
-  background:linear-gradient(90deg,rgba(255,255,255,0) 0%,rgba(190,230,255,.18) 35%,rgba(255,255,255,.55) 50%,rgba(190,230,255,.18) 65%,rgba(255,255,255,0) 100%);
-  animation:sh-sheen 7s cubic-bezier(.45,.05,.35,1) 1.8s infinite both}
+.sh-sheen:before,.sh-sheen:after{content:'';position:absolute;top:-15%;bottom:-15%;left:0;pointer-events:none}
+.sh-sheen:before{width:34%;
+  background:linear-gradient(90deg,rgba(255,255,255,0) 0%,rgba(170,220,255,.25) 25%,rgba(220,242,255,.6) 42%,rgba(255,255,255,.95) 50%,rgba(220,242,255,.6) 58%,rgba(170,220,255,.25) 75%,rgba(255,255,255,0) 100%);
+  filter:blur(2px);animation:sh-sheen-fast 2.4s cubic-bezier(.55,.1,.35,1) 1.6s infinite both}
+.sh-sheen:after{width:7%;
+  background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.85),rgba(255,255,255,0));
+  animation:sh-sheen-fast 2.4s cubic-bezier(.55,.1,.35,1) 1.85s infinite both}
 
 /* Water beads popping up on the coated roof */
 .sh-beads{position:absolute;inset:0;pointer-events:none}
@@ -46,7 +51,7 @@
 
 @media (prefers-reduced-motion:reduce){
   .js-hero .hero-premium-copy{transform:none;opacity:1}
-  .js-hero .hero-scene picture,.js-hero .sh-line>span,.js-hero .hero-premium h1 .sh-shine,.js-hero .sh-rise,.js-hero .hero-premium .status-dot,.js-hero .hero-actions .button:after,.sh-sheen:before,.sh-bead{animation:none}
+  .js-hero .hero-scene picture,.js-hero .sh-line>span,.js-hero .hero-premium h1 .sh-shine,.js-hero .sh-rise,.js-hero .hero-premium .status-dot,.js-hero .hero-actions .button:after,.sh-sheen:before,.sh-sheen:after,.sh-bead{animation:none}
   .sh-sheen,.sh-beads{display:none}
   .js-hero .hero-premium h1 .sh-shine{color:#0072bb;background:none}
 }
